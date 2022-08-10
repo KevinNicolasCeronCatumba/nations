@@ -22,6 +22,12 @@ class Country extends Model
 
     //relacion m a m con idiomas
     public function languages(){
-        return $this->belongsToMany(Language::class,'country_languages','country_id','language_id');
+        return $this->belongsToMany(Language::class,'country_languages','country_id','language_id')->withPivot('official');
+    }
+
+    //relacion entre pais y contienente 
+    public function continente(){
+        return $this->belongsToManyThroug(Region::class,Country::class,'region_id','continent_id','region_id','continent_id',);
     }
 }
+
